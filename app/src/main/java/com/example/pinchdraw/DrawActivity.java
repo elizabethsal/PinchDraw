@@ -8,23 +8,13 @@ import androidx.fragment.app.Fragment;
 
 public class DrawActivity extends FragmentActivity {
 
-    @Override
+    // @Override
     protected Fragment createFragment() {
-        return DrawFragment.newInstance();
 
-
-
-/*
-    @Override
-    protected Fragment createFragment() {
         return DrawFragment.newInstance();
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
-*/
-    }
-    }
+}
+
+
 
 

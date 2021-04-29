@@ -1,27 +1,49 @@
 package com.example.pinchdraw;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public abstract class FragmentActivity extends androidx.fragment.app.FragmentActivity {
+public abstract class FragmentActivity extends AppCompatActivity {
 
-    protected abstract Fragment createFragment();
-
+    DrawingView drawingView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.container);
-        if(fragment == null){
-            fragment = createFragment();
-            fm.beginTransaction().add(R.id.container, fragment).commit();
-        }
+        drawingView = new DrawingView(this, null);
+        setContentView(drawingView);
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.option_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.clear:
+                drawingView.clear();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
 }
+
+
