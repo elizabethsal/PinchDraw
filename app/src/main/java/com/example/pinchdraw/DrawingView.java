@@ -20,8 +20,10 @@ import java.util.List;
 public class DrawingView extends View {
 
     private Paint paint;
-    private MotionEvent startLine;
-    private MotionEvent endLine;
+    private float startX = 0;
+    private float startY = 0;
+    private float endX = 0;
+    private float endY = 0;
 
 
     public DrawingView(Context context) {
@@ -53,13 +55,7 @@ public class DrawingView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        if (startLine != null && endLine != null) {
-
-            canvas.drawLine(startLine.getX(), startLine.getY(), endLine.getX(), endLine.getY(), paint);
-
-        }
-
+        canvas.drawLine(startX, startY, endX, endY, paint);
     }
 
 
@@ -69,13 +65,13 @@ public class DrawingView extends View {
 
         switch (maskedAction) {
             case MotionEvent.ACTION_DOWN:
-                startLine = event;
-                System.out.println("ACTION_DOWN");
+                startX = event.getX();
+                startY = event.getY();
                 break;
             case MotionEvent.ACTION_UP:
-                endLine = event;
+                endX = event.getX();
+                endY = event.getY();
                 invalidate();
-                System.out.println("ACTION_UP");
                 break;
 
             default:
