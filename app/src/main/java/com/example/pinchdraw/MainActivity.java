@@ -8,19 +8,14 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-public abstract class FragmentActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    DrawingView drawingView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        drawingView = new DrawingView(this, null);
-        setContentView(drawingView);
-
+        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -34,7 +29,7 @@ public abstract class FragmentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.clear:
-                drawingView.clear();
+               // drawingView.clear();
                 return true;
         }
         return super.onOptionsItemSelected(item);
